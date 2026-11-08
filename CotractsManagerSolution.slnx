@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="ContractsManager.Core/ContractsManager.Core.csproj" Id="4d5e12d6-14f3-4761-bdd2-226430361ab8" />
+    <Project Path="ContractsManager.Infrastructure/ContractsManager.Infrastructure.csproj" Id="fa4cdce7-9b4b-4c73-be09-2bc0d340012f" />
+    <Project Path="CotractsManager.UI/CotractsManager.UI.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+</Solution>
