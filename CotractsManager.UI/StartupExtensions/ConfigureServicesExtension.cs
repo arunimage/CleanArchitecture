@@ -1,5 +1,7 @@
 ﻿using CRUDExample.Filters.ActionFilters;
+using Entities;
 using Microsoft.EntityFrameworkCore;
+using Repositories;
 using RepositoryContracts;
 using ServiceContracts;
 using Services;
@@ -44,7 +46,7 @@ namespace CRUDExample
       services.AddScoped<IPersonsGetterService, PersonsGetterService>();
       services.AddScoped<IPersonsSorterService, PersonsSorterService>();
       services.AddScoped<IPersonsUpdaterService, PersonsUpdaterService>();
-      services.AddScoped<ICountriesRepository, CountriesRepository>();
+      services.AddScoped<ICountriesRepository, CountriesRepositoy>();
       services.AddScoped<IPersonsRepository, PersonsRepository>();
 
       services.AddDbContext<ApplicationDbContext>(options =>
