@@ -30,8 +30,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ContractsManager.Core\ContactsManager.Core.csproj" />
-		<ProjectReference Include="..\ContractsManager.Infrastructure\ContactsManager.Infrastructure.csproj" />
+		<ProjectReference Include="..\ContactsManager.Core\ContactsManager.Core.csproj" />
+		<ProjectReference Include="..\ContactsManager.Infrastructure\ContactsManager.Infrastructure.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

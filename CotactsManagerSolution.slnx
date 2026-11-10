@@ -1,8 +1,8 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="ContractsManager.Core/ContactsManager.Core.csproj" Id="4d5e12d6-14f3-4761-bdd2-226430361ab8" />
-    <Project Path="ContractsManager.Infrastructure/ContactsManager.Infrastructure.csproj" Id="fa4cdce7-9b4b-4c73-be09-2bc0d340012f" />
-    <Project Path="CotractsManager.UI/CotactsManager.UI.csproj" />
+    <Project Path="ContactsManager.Core/ContactsManager.Core.csproj" />
+    <Project Path="ContactsManager.Infrastructure/ContactsManager.Infrastructure.csproj" />
+    <Project Path="CotactsManager.UI/CotactsManager.UI.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="ContactsManager.ControllerTests/ContactsManager.ControllerTests.csproj" Id="37009d58-7aef-4515-88c8-9f1970fb7675" />
