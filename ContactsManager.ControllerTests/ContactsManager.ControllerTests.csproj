@@ -18,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CotractsManager.UI\CotactsManager.UI.csproj" />
+    <ProjectReference Include="..\ContactsManager.Core\ContactsManager.Core.csproj" />
+    <ProjectReference Include="..\CotactsManager.UI\CotactsManager.UI.csproj" />
   </ItemGroup>
 
   <ItemGroup>
