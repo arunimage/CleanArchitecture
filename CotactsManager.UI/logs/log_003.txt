@@ -1,3 +1,0 @@
-2026-11-10 21:25:19.259 +05:30 [INF] Application started. Press Ctrl+C to shut down.
-2026-11-10 21:25:19.265 +05:30 [INF] Hosting environment: Development
-2026-11-10 21:25:19.266 +05:30 [INF] Content root path: C:\Users\DELL\Desktop\DOT NET\CleanArchitecture\CotractsManagerSolution\CotactsManager.UI

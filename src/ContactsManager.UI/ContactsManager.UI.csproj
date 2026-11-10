@@ -6,16 +6,6 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Remove="src\**" />
-		<Compile Remove="tests\**" />
-		<Content Remove="src\**" />
-		<Content Remove="tests\**" />
-		<EmbeddedResource Remove="src\**" />
-		<EmbeddedResource Remove="tests\**" />
-		<None Remove="src\**" />
-		<None Remove="tests\**" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.14" />
@@ -29,13 +19,11 @@
 		<PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.14" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\ContactsManager.Core\ContactsManager.Core.csproj" />
-		<ProjectReference Include="..\ContactsManager.Infrastructure\ContactsManager.Infrastructure.csproj" />
-	</ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="ContactsManager.IntegrationTests" />
+	  <ProjectReference Include="..\ContactsManager.Core\ContactsManager.Core.csproj" />
+	  <ProjectReference Include="..\ContactsManager.Infrastructure\ContactsManager.Infrastructure.csproj" />
 	</ItemGroup>
+
 
 </Project>
