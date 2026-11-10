@@ -1,5 +1,8 @@
-﻿using CRUDExample.Filters.ActionFilters;
+﻿using ContactsManager.Core.Domain.IdentityEntities;
+using CRUDExample.Filters.ActionFilters;
 using Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using RepositoryContracts;
@@ -13,6 +16,12 @@ namespace CRUDExample
     public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
     {
       services.AddTransient<PersonsListActionFilter>();
+
+      // Enable Identity with Guid-based User and Role
+      services
+          .AddIdentity<ApplicationUser, ApplicationRole>()
+          .AddEntityFrameworkStores<ApplicationDbContext>()
+          .AddDefaultTokenProviders();
 
       // Register HTTP logging services
       services.AddHttpLogging(options =>
