@@ -1,8 +1,8 @@
 ﻿using ContactsManager.Core.Domain.IdentityEntities;
 using CRUDExample.Filters.ActionFilters;
 using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using RepositoryContracts;
@@ -15,13 +15,39 @@ namespace CRUDExample
   {
     public static IServiceCollection ConfigureServices(this IServiceCollection services, IConfiguration configuration)
     {
+      services.AddDbContext<ApplicationDbContext>(options =>
+      {
+        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+      });
+
       services.AddTransient<PersonsListActionFilter>();
 
       // Enable Identity with Guid-based User and Role
       services
-          .AddIdentity<ApplicationUser, ApplicationRole>()
+          .AddIdentity<ApplicationUser, ApplicationRole>(options =>
+          {
+            options.Password.RequiredLength = 5;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequireLowercase = true;
+            options.Password.RequireDigit = false;
+            options.Password.RequiredUniqueChars = 3;
+          })
           .AddEntityFrameworkStores<ApplicationDbContext>()
           .AddDefaultTokenProviders();
+
+      //Authorization Policy
+      services.AddAuthorization(options =>
+      {
+        options.FallbackPolicy = new AuthorizationPolicyBuilder()
+            .RequireAuthenticatedUser()
+            .Build();
+      });
+
+      services.ConfigureApplicationCookie(option =>
+      {
+        option.LoginPath = "/Account/Login";
+      });
 
       // Register HTTP logging services
       services.AddHttpLogging(options =>
@@ -58,10 +84,6 @@ namespace CRUDExample
       services.AddScoped<ICountriesRepository, CountriesRepositoy>();
       services.AddScoped<IPersonsRepository, PersonsRepository>();
 
-      services.AddDbContext<ApplicationDbContext>(options =>
-      {
-        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-      });
       return services;
     }
   }
