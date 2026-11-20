@@ -1,5 +1,6 @@
 using CRUDExample;
 using CRUDExample.Middleware;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.Patterns;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,9 @@ else
   app.UseExceptionHandlingMiddleware();
 }
 
+app.UseHsts();
+app.UseHttpsRedirection();
+
 app.UseSerilogRequestLogging();
 
 app.UseHttpLogging();
@@ -39,7 +43,24 @@ app.UseHttpLogging();
 Rotativa.AspNetCore.RotativaConfiguration.Setup("wwwroot", wkhtmltopdfRelativePath: "Rotativa");
 
 app.UseStaticFiles();
+
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
+
+app.UseEndpoints(endpoints =>
+{
+  endpoints.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}");
+  //Admin/Home/Index
+  //Admin
+
+  endpoints.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action}/{id?}"
+    );
+});
 
 app.Run();
