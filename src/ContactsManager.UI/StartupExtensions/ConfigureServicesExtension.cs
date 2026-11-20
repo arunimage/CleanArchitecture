@@ -3,6 +3,7 @@ using CRUDExample.Filters.ActionFilters;
 using Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using RepositoryContracts;
@@ -41,7 +42,16 @@ namespace CRUDExample
       {
         options.FallbackPolicy = new AuthorizationPolicyBuilder()
             .RequireAuthenticatedUser()
-            .Build();
+            .Build();  //Enforce authorization policy (user must be authenticated) for all the action methods
+
+
+        options.AddPolicy("NotAuthorized", policy =>
+        {
+          policy.RequireAssertion(context =>
+          {
+            return !context.User.Identity.IsAuthenticated;
+          });
+        });
       });
 
       services.ConfigureApplicationCookie(option =>
@@ -72,6 +82,8 @@ namespace CRUDExample
           Value = "My-Value-From-Global",
           Order = 2
         });
+
+        options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
       });
 
       //add services into IoC container
